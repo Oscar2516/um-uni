@@ -1,4 +1,4 @@
-# Genera el sitio estático en .\docs (listo para GitHub Pages).
+﻿# Genera el sitio estático en .\docs (listo para GitHub Pages).
 # Las imágenes de .\Imagenes se recortan/optimizan y se guardan en docs\img.
 # Uso:  powershell -ExecutionPolicy Bypass -File .\build.ps1
 Add-Type -AssemblyName System.Drawing
@@ -76,6 +76,18 @@ $secImg = [ordered]@{
 $secPath = @{}
 foreach ($k in $secImg.Keys) { $h = Make-Hero $secImg[$k] "hero-$k.jpg"; if ($h) { $secPath[$k] = $h } }
 
+# Organigrama (imagen + datos de la página Organización)
+$orgSrc = "$root\documentos_referencia\Organigrama_UNI_hor.jpg"
+if (-not $cfg.orgImage -and (Test-Path $orgSrc)) {
+  $bm = New-Object System.Drawing.Bitmap $orgSrc
+  $d = Resize-Bmp $bm 3400; $bm.Dispose()
+  Save-Jpeg $d "$out\img\organigrama.jpg" 80; $d.Dispose()
+  Set-Prop $cfg 'orgImage' 'img/organigrama.jpg'
+}
+$orgJson = '{"units":' + (Get-Content "$root\src\data\organizacion_unidades.json" -Raw -Encoding UTF8) + ',"arts":' + (Get-Content "$root\src\data\rof_articulos.json" -Raw -Encoding UTF8) + '}'
+$orgCss  = Get-Content "$root\src\org.css" -Raw -Encoding UTF8
+$orgJs   = Get-Content "$root\src\org.js"  -Raw -Encoding UTF8
+
 # Menú: enlaces relativos entre páginas (si config.json no define otra URL)
 $pages = 'inicio','normativa','procesos','simplificacion','organizacion','innovacion','servicios-digitales'
 if (-not $cfg.nav) { Set-Prop $cfg 'nav' ([pscustomobject]@{}) }
@@ -90,6 +102,11 @@ foreach ($p in $pages) {
   if ($secPath.ContainsKey($p)) { $pc.heroImage = $secPath[$p] }
   $json = $pc | ConvertTo-Json -Depth 6 -Compress
   $html = $tpl.Replace('/*__CONFIG__*/', $json).Replace('__PAGE__', $p)
+  if ($p -eq 'organizacion') {
+    $html = $html.Replace('/*__ORGCSS__*/', $orgCss).Replace('/*__ORGJS__*/', $orgJs).Replace('/*__ORG__*/null', $orgJson)
+  } else {
+    $html = $html.Replace('/*__ORGCSS__*/', '').Replace('/*__ORGJS__*/', '')
+  }
   [IO.File]::WriteAllText("$out\$p.html", $html, $utf8)
   if ($p -eq 'inicio') { [IO.File]::WriteAllText("$out\index.html", $html, $utf8) }
   Write-Host ("docs\{0}.html  {1:N0} KB" -f $p, ($html.Length / 1KB))

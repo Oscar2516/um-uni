@@ -119,6 +119,7 @@ mark{background:#ffe9a8;padding:0 1px;border-radius:2px}
 }
 @media(max-width:600px){.cards{grid-template-columns:repeat(2,1fr)}.proj{grid-template-columns:1fr}.brand .m{font-size:14px}}
 @media(max-width:420px){.cards{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -162,7 +163,7 @@ mark{background:#ffe9a8;padding:0 1px;border-radius:2px}
 
 <script>
 /* ===== Configuración (inyectada por build.ps1 desde config.json) ===== */
-const CFG = {"sheetId":"1uZXfUJEjqB4Cp5wfel468guVGFYdLR3NtXSsrEAdOWU","logo":"img/logo-uni.png","heroImage":"img/hero-servicios-digitales.jpg","tabs":{"resumen":"Resumen","proyectos":"Proyectos","normativa":"Normativa","procesos":"Procesos","simplificacion":"Simplificacion","organizacion":"Organizacion","innovacion":"Innovacion","servicios":"ServiciosDigitales"},"nav":{"inicio":"inicio.html","normativa":"normativa.html","procesos":"procesos.html","simplificacion":"simplificacion.html","organizacion":"organizacion.html","innovacion":"innovacion.html","servicios-digitales":"servicios-digitales.html"},"unidad":"img/unidad.png"};
+const CFG = {"sheetId":"1uZXfUJEjqB4Cp5wfel468guVGFYdLR3NtXSsrEAdOWU","logo":"img/logo-uni.png","heroImage":"img/hero-servicios-digitales.jpg","tabs":{"resumen":"Resumen","proyectos":"Proyectos","normativa":"Normativa","procesos":"Procesos","simplificacion":"Simplificacion","organizacion":"Organizacion","innovacion":"Innovacion","servicios":"ServiciosDigitales"},"nav":{"inicio":"inicio.html","normativa":"normativa.html","procesos":"procesos.html","simplificacion":"simplificacion.html","organizacion":"organizacion.html","innovacion":"innovacion.html","servicios-digitales":"servicios-digitales.html"},"unidad":"img/unidad.png","orgImage":"img/organigrama.jpg"};
 const PAGE = 'servicios-digitales';
 
 /* ===== Definición de secciones ===== */
@@ -386,10 +387,13 @@ $('#q').addEventListener('input', runSearch);
 $('#ov').addEventListener('click', e=>{ if(e.target.id==='ov') closeSearch(); });
 document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeSearch(); });
 
+const ORG = /*__ORG__*/null;
+
+
 /* ===== Arranque ===== */
 buildHeader();
 const secKey = PAGE==='servicios-digitales' ? 'servicios' : PAGE;
-if(secKey==='inicio') renderHome(); else renderSection(secKey);
+if(secKey==='inicio') renderHome(); else if(secKey==='organizacion' && ORG) renderOrg(); else renderSection(secKey);
 </script>
 </body>
 </html>

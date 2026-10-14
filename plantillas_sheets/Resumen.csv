@@ -5,3 +5,7 @@ simplificacion,58,38,procedimientos revisados de 65
 organizacion,82,42,unidades alineadas de 51
 innovacion,64,8,iniciativas en marcha de 12
 servicios,45,2,servicios disponibles de 5
+org_organos,,28,órganos (opcional: si se deja vacío se calcula del organigrama)
+org_unidades,,28,unidades (opcional)
+org_procesos,,45,procesos relacionados (opcional)
+org_puestos,,128,puestos MCC (opcional)
