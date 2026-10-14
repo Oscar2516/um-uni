@@ -1,0 +1,24 @@
+{
+  "sheetId": "1uZXfUJEjqB4Cp5wfel468guVGFYdLR3NtXSsrEAdOWU",
+  "logo": "",
+  "heroImage": "",
+  "tabs": {
+    "resumen": "Resumen",
+    "proyectos": "Proyectos",
+    "normativa": "Normativa",
+    "procesos": "Procesos",
+    "simplificacion": "Simplificacion",
+    "organizacion": "Organizacion",
+    "innovacion": "Innovacion",
+    "servicios": "ServiciosDigitales"
+  },
+  "nav": {
+    "inicio": "",
+    "normativa": "",
+    "procesos": "",
+    "simplificacion": "",
+    "organizacion": "",
+    "innovacion": "",
+    "servicios-digitales": ""
+  }
+}
