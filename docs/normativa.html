@@ -77,6 +77,19 @@ h1 em{font-style:normal;color:var(--red)}
 .p .ico{border-radius:12px;width:44px;height:44px}
 .p h4{margin:0 0 4px;font-size:14.5px;color:#111}
 .p p{margin:0;font-size:13px;color:#434b5c;line-height:1.4}
+.p{position:relative}
+.p .go{position:absolute;right:14px;bottom:12px;width:30px;height:30px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(20,35,63,.15);display:grid;place-items:center;font-size:18px;font-weight:700;color:#1d2433}
+.est{display:inline-flex;align-items:center;gap:7px;margin-top:10px;padding:5px 11px;border-radius:8px;font-size:12.5px;font-weight:600;color:#3b4457}
+.est i{width:9px;height:9px;border-radius:50%;background:currentColor}
+.est.amb{background:#fdeccb;color:#8a5a00}.est.amb i{background:#f59e0b}
+.est.grn{background:#dcf3e3;color:#1e6b3a}.est.grn i{background:#22a559}
+.est.gry{background:#e7e9ef;color:#3b4457}.est.gry i{background:#6b7280}
+.quick{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;padding-bottom:40px}
+.q{display:flex;align-items:center;gap:10px;background:color-mix(in srgb,var(--c) 7%,#fff);border:1px solid color-mix(in srgb,var(--c) 18%,#fff);border-radius:var(--radius);padding:14px;font-size:13.5px;font-weight:600;color:var(--c);line-height:1.25;transition:transform .15s,box-shadow .15s}
+.q:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(20,35,63,.12)}
+.q span:nth-child(2){flex:1}
+.qi svg{width:30px;height:30px;stroke:var(--c);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block}
+.q b{font-size:20px}
 .p small{display:block;margin-top:8px;font-size:11px;font-weight:700;color:var(--c);text-transform:uppercase;letter-spacing:.3px}
 
 /* Páginas interiores */
@@ -105,7 +118,7 @@ tr:hover td{background:#fafbfe}
 mark{background:#ffe9a8;padding:0 1px;border-radius:2px}
 #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#14233f;color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;display:none;z-index:60}
 
-@media(max-width:1100px){.cards{grid-template-columns:repeat(3,1fr)}.proj{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1100px){.cards{grid-template-columns:repeat(3,1fr)}.proj{grid-template-columns:repeat(2,1fr)}.quick{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:900px){
   .burger{display:block}
   .lupa{margin-left:0;border:0}
@@ -117,7 +130,7 @@ mark{background:#ffe9a8;padding:0 1px;border-radius:2px}
   .hero .wrap{min-height:0}
   .hero .txt{padding:24px 0 90px}
 }
-@media(max-width:600px){.cards{grid-template-columns:repeat(2,1fr)}.proj{grid-template-columns:1fr}.brand .m{font-size:14px}}
+@media(max-width:600px){.cards{grid-template-columns:repeat(2,1fr)}.proj,.quick{grid-template-columns:1fr}.brand .m{font-size:14px}}
 @media(max-width:420px){.cards{grid-template-columns:1fr}}
 
 </style>
@@ -176,7 +189,8 @@ const I = {
   globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',
   cap:'<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/>',
   search:'<rect x="5" y="3" width="11" height="16" rx="1"/><circle cx="14" cy="14" r="3"/><path d="M16 16l3 3"/>',
-  build:'<path d="M3 9l9-5 9 5M5 10v8M9 10v8M15 10v8M19 10v8M3 20h18"/>'
+  build:'<path d="M3 9l9-5 9 5M5 10v8M9 10v8M15 10v8M19 10v8M3 20h18"/>',
+  map:'<path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>'
 };
 const SECTIONS = [
   {k:'normativa',    t:'Normativa',          c:'#a3202a', ic:I.doc,   cta:'Ver normativa'},
@@ -198,10 +212,10 @@ const DEMO_RESUMEN = [
   {clave:'servicios',porcentaje:45,cifra:2,descripcion:'servicios disponibles de 5'}
 ];
 const DEMO_PROJ = [
-  {titulo:'Grados y Títulos',descripcion:'Simplificación y digitalización del trámite de Bachiller y Título Profesional.',responsable:'DIRCE',icono:'cap',color:'#a3202a'},
-  {titulo:'Verificación de documentos UNI',descripcion:'Validación digital de diplomas y certificados emitidos por la UNI.',responsable:'DIPSODES',icono:'search',color:'#1f5fbf'},
-  {titulo:'Servicios digitales verificables',descripcion:'Modelo replicable para DITT, Facultades y otras unidades.',responsable:'Unidad correspondiente',icono:'gear',color:'#6a3fc4'},
-  {titulo:'Modernización del ROF',descripcion:'Actualización y alineamiento de la estructura organizacional.',responsable:'Unidad de Modernización',icono:'build',color:'#2e8b4a'}
+  {titulo:'Grados y Títulos',descripcion:'Simplificación y digitalización del trámite de Bachiller y Título Profesional.',responsable:'DIRCE',icono:'cap',color:'#a3202a',estado:'En implementación'},
+  {titulo:'Verificación de documentos UNI',descripcion:'Validación digital de diplomas y certificados emitidos por la UNI.',responsable:'DIRSODES',icono:'search',color:'#1f5fbf',estado:'En desarrollo'},
+  {titulo:'Servicios digitales verificables',descripcion:'Modelo replicable para DITT, Facultades y otras unidades.',responsable:'Unidad correspondiente',icono:'gear',color:'#6a3fc4',estado:'Progresivo'},
+  {titulo:'Modernización del ROF',descripcion:'Actualización y alineamiento de la estructura organizacional.',responsable:'Unidad de Modernización',icono:'build',color:'#2e8b4a',estado:'En avance'}
 ];
 
 /* ===== Utilidades ===== */
@@ -315,13 +329,30 @@ async function renderHome(){
   animateRings();
 
   let proj; try{ proj = asObjects(await sheet(CFG.tabs.proyectos)); if(!proj.length) throw 0 }catch(e){ proj = DEMO_PROJ }
-  $('#inner').innerHTML = `
-    <div class="sec-h"><h2>Proyectos de modernización</h2><span class="ln"></span></div>
-    <div class="proj">${proj.map(p=>`
+  const estCls = e => /implement|desarroll/i.test(e)?'amb':/avance|complet|conclu/i.test(e)?'grn':'gry';
+  const projCard = p => `
       <div class="p" style="--c:${esc(p.color||'#1f5fbf')}">
         <span class="ico">${svgIcon(PROJ_ICONS[p.icono]||I.gear)}</span>
-        <div><h4>${esc(p.titulo)}</h4><p>${esc(p.descripcion)}</p><small>Responsable: ${esc(p.responsable)}</small></div>
-      </div>`).join('')}</div>`;
+        <div><h4>${esc(p.titulo)}</h4><p>${esc(p.descripcion)}</p><small>Responsable: ${esc(p.responsable)}</small>
+          ${p.estado?`<span class="est ${estCls(p.estado)}"><i></i>${esc(p.estado)}</span>`:''}</div>
+        <span class="go">›</span>
+      </div>`;
+  const QUICK = [
+    {k:'normativa',     t:'Consultar normativa',          c:'#a3202a', ic:I.doc},
+    {k:'procesos',      t:'Ver mapa de procesos',         c:'#1f5fbf', ic:I.map},
+    {k:'organizacion',  t:'Consultar organización',       c:'#2e8b4a', ic:I.org},
+    {k:'simplificacion',t:'Ver procedimientos (TUPA)',    c:'#e0572a', ic:I.check},
+    {k:'innovacion',    t:'Ver iniciativas de innovación',c:'#6a3fc4', ic:I.bulb},
+    {k:'servicios',     t:'Servicios digitales',          c:'#0e5f8a', ic:I.globe}
+  ];
+  $('#inner').innerHTML = `
+    <div class="sec-h"><h2>Proyectos de modernización</h2><span class="ln"></span>${proj.length>4?'<a href="#" id="allProj">Ver todos los proyectos →</a>':''}</div>
+    <div class="proj" id="projList">${proj.slice(0,4).map(projCard).join('')}</div>
+    <div class="sec-h"><h2>Accesos rápidos</h2><span class="ln"></span></div>
+    <div class="quick">${QUICK.map(q=>`
+      <a class="q" href="#" data-go="${q.k}" style="--c:${q.c}"><span class="qi">${svgIcon(q.ic)}</span><span>${esc(q.t)}</span><b>›</b></a>`).join('')}</div>`;
+  const all=$('#allProj');
+  if(all) all.onclick=e=>{ e.preventDefault(); const more=!all.dataset.m; all.dataset.m=more?'1':''; $('#projList').innerHTML=(more?proj:proj.slice(0,4)).map(projCard).join(''); all.textContent=more?'Ver menos proyectos ←':'Ver todos los proyectos →'; };
 }
 
 async function renderSection(key){

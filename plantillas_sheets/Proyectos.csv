@@ -1,5 +1,5 @@
-﻿titulo,descripcion,responsable,icono,color
-Grados y Títulos,Simplificación y digitalización del trámite de Bachiller y Título Profesional.,DIRCE,cap,#a3202a
-Verificación de documentos UNI,Validación digital de diplomas y certificados emitidos por la UNI.,DIPSODES,search,#1f5fbf
-Servicios digitales verificables,"Modelo replicable para DITT, Facultades y otras unidades.",Unidad correspondiente,gear,#6a3fc4
-Modernización del ROF,Actualización y alineamiento de la estructura organizacional.,Unidad de Modernización,build,#2e8b4a
+﻿titulo,descripcion,responsable,icono,color,estado
+Grados y Títulos,Simplificación y digitalización del trámite de Bachiller y Título Profesional.,DIRCE,cap,#a3202a,En implementación
+Verificación de documentos UNI,Validación digital de diplomas y certificados emitidos por la UNI.,DIRSODES,search,#1f5fbf,En desarrollo
+Servicios digitales verificables,"Modelo replicable para DITT, Facultades y otras unidades.",Unidad correspondiente,gear,#6a3fc4,Progresivo
+Modernización del ROF,Actualización y alineamiento de la estructura organizacional.,Unidad de Modernización,build,#2e8b4a,En avance

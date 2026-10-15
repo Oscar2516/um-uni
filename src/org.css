@@ -1,5 +1,6 @@
 /* ===== Página Organización ===== */
 main.wide{max-width:1560px}
+.hero.wide .wrap{max-width:1560px}
 .org{display:grid;grid-template-columns:230px 1fr;gap:22px;padding:22px 0 40px;align-items:start}
 .side{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:10px;position:sticky;top:96px}
 .side .sh{display:flex;align-items:center;gap:10px;background:var(--red);color:#fff;border-radius:12px;padding:12px 14px;font-weight:700;margin-bottom:8px}
@@ -38,7 +39,7 @@ main.wide{max-width:1560px}
 .chartbox:fullscreen .vp{height:calc(100vh - 150px)}
 .stage{position:relative;line-height:0;transition:width .2s}
 .stage img{width:100%;height:auto;display:block;user-select:none}
-.hs{position:absolute;border:0;background:transparent;padding:0;cursor:pointer;border-radius:4px}
+.hs{position:absolute;border:0;background:transparent;padding:0;cursor:pointer;border-radius:2px}
 .hs:hover{outline:2px solid rgba(31,95,191,.7);background:rgba(31,95,191,.08)}
 .hs.sel{outline:3px solid #1f5fbf;box-shadow:0 0 0 4px rgba(31,95,191,.25);background:rgba(31,95,191,.06)}
 .hs:focus-visible{outline:3px solid #1f5fbf}

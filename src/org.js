@@ -30,12 +30,16 @@ async function renderOrg(){
   const byId = Object.fromEntries(U.map(u=>[u.id,u]));
   const st = {view:'organigrama', sel:null, tab:'general', zoom:1};
 
-  document.querySelector('.hero').style.display='none';
-  $('#cards').style.display='none';
+  const SEC = SECTIONS.find(x=>x.k==='organizacion');
+  buildHero(SEC);
+  document.querySelector('.hero').classList.add('inner','wide');
   document.querySelector('main').classList.add('wide');
 
   /* KPI: valores de la pestaña Resumen (org_*) o calculados del organigrama */
   const res = await loadResumen();
+  const dOrg = res.find(r=>norm(r.clave)==='organizacion') || {porcentaje:0,cifra:'–',descripcion:'Sin datos'};
+  $('#cards').innerHTML = `<div class="single">${cardHTML(SEC,dOrg).replace('href="#" data-go="organizacion"','')}</div>`;
+  animateRings();
   const rv = k => { const r=res.find(x=>norm(x.clave)===k); return r&&r.cifra!==''?r.cifra:null; };
   const nOrg = U.filter(u=>/^[ÓO]rgano/.test(u.tipo)).length;
   let nProc = rv('org_procesos');
